@@ -177,7 +177,7 @@ export default function OrderForm({
                 <DeliveryCard
                   active={draft.deliveryType === "stopDesk"}
                   badge={t(lang, "mostPopular")}
-                  fee={totals.hasFreeStopDesk ? 0 : tariff.stopDesk}
+                  fee={!draft.wilayaId ? 0 : totals.hasFreeStopDesk ? 0 : tariff.stopDesk}
                   icon={<Building2 className="size-5" />}
                   lang={lang}
                   note={t(lang, "stopDeskNote")}
@@ -186,7 +186,7 @@ export default function OrderForm({
                 />
                 <DeliveryCard
                   active={draft.deliveryType === "home"}
-                  fee={tariff.home}
+                  fee={!draft.wilayaId ? 0 : tariff.home}
                   icon={<Home className="size-5" />}
                   lang={lang}
                   note={t(lang, "homeNote")}

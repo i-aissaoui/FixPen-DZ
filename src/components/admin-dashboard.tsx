@@ -62,11 +62,26 @@ export default function AdminDashboard() {
   const [saved, setSaved] = useState(false);
   const [todayKey, setTodayKey] = useState("");
 
-  function loadLocalData() {
+  async function loadData() {
     setTodayKey(new Date().toISOString().slice(0, 10));
-    setOrders(loadOrders());
     setStock(loadStock());
     setSettings(loadSettings());
+
+    let serverOrders: Order[] = [];
+    try {
+      const response = await fetch("/api/admin/orders", { cache: "no-store" });
+      if (response.ok) {
+        const data = (await response.json()) as { orders?: Order[] };
+        serverOrders = data.orders ?? [];
+      }
+    } catch {
+      serverOrders = [];
+    }
+
+    const byId = new Map<string, Order>();
+    for (const order of loadOrders()) byId.set(order.id, order);
+    for (const order of serverOrders) byId.set(order.id, order);
+    setOrders([...byId.values()].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
   }
 
   useEffect(() => {
@@ -76,7 +91,7 @@ export default function AdminDashboard() {
       .then((data: { authenticated: boolean }) => {
         if (!active) return;
         setAuthenticated(Boolean(data.authenticated));
-        if (data.authenticated) loadLocalData();
+        if (data.authenticated) void loadData();
         setChecking(false);
       })
       .catch(() => {
@@ -105,7 +120,7 @@ export default function AdminDashboard() {
       }
       setAuthenticated(true);
       setPassword("");
-      loadLocalData();
+      void loadData();
     } catch {
       setLoginError("تعذر الاتصال بالخادم");
     } finally {
@@ -140,10 +155,20 @@ export default function AdminDashboard() {
     };
   }, [orders, todayKey]);
 
-  function updateStatus(id: string, status: OrderStatus) {
+  async function updateStatus(id: string, status: OrderStatus) {
     const next = orders.map((order) => (order.id === id ? { ...order, status } : order));
     setOrders(next);
     replaceOrders(next);
+
+    try {
+      await fetch("/api/admin/orders", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status }),
+      });
+    } catch {
+      return;
+    }
   }
 
   function toggleStock(id: string) {

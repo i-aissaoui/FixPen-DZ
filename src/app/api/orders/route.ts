@@ -1,3 +1,4 @@
+import { appendOrderToCsv } from "@/lib/order-store";
 import { MAX_PENS } from "@/lib/pricing";
 import type { Order } from "@/lib/types";
 
@@ -51,6 +52,14 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, error: "Invalid order payload" }, { status: 400 });
   }
 
+  let csvSaved = false;
+  try {
+    await appendOrderToCsv(body);
+    csvSaved = true;
+  } catch {
+    csvSaved = false;
+  }
+
   const webhookUrl = process.env.ORDERS_WEBHOOK_URL;
   let forwarded = false;
 
@@ -73,7 +82,7 @@ export async function POST(request: Request) {
   }
 
   return Response.json(
-    { ok: true, orderId: body.id, forwarded, webhookConfigured: Boolean(webhookUrl) },
+    { ok: true, orderId: body.id, csvSaved, forwarded, webhookConfigured: Boolean(webhookUrl) },
     { status: 201 },
   );
 }

@@ -82,7 +82,7 @@ export default function Storefront() {
     () =>
       calculateTotals({
         penCount,
-        wilayaId: draft.wilayaId || "16",
+        wilayaId: draft.wilayaId,
         deliveryType: draft.deliveryType,
         settings,
       }),
@@ -130,7 +130,7 @@ export default function Storefront() {
     pixelEvents.initiateCheckout(expanded.codes, totals.productSubtotal);
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     setError("");
 
     if (penCount === 0 || draft.fullName.trim().length < 2 || draft.commune.trim().length < 2) {
@@ -183,13 +183,21 @@ export default function Storefront() {
     saveOrder(order);
     pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal);
 
-    void fetch("/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(order),
-    }).catch(() => null);
+    let csvSaved = false;
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(order),
+      });
+      const data = (await response.json()) as { csvSaved?: boolean };
+      csvSaved = Boolean(data.csvSaved);
+    } catch {
+      csvSaved = false;
+    }
 
     setConfirmation(order);
+    setError(csvSaved ? "" : t(lang, "csvSaveWarning"));
     setSubmitting(false);
   }
 

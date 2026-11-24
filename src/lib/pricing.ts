@@ -49,9 +49,9 @@ export function calculateTotals({
 }) {
   const safeCount = Math.max(0, Math.min(penCount, MAX_PENS));
   const productSubtotal = getProductSubtotal(safeCount, settings.prices);
-  const tariff = settings.tariffs[wilayaId] ?? { stopDesk: 400, home: 600 };
+  const tariff = settings.tariffs[wilayaId];
   const hasFreeStopDesk = safeCount >= 3 && deliveryType === "stopDesk";
-  const deliveryFee = hasFreeStopDesk ? 0 : tariff[deliveryType];
+  const deliveryFee = !tariff || safeCount === 0 || hasFreeStopDesk ? 0 : tariff[deliveryType];
   const grandTotal = productSubtotal + deliveryFee;
   const savedVsSingle = Math.max(0, safeCount * settings.prices.one - productSubtotal);
 
