@@ -1,0 +1,109 @@
+﻿wilaya_numero,wilaya_fr,wilaya_ar,commune_fr,commune_ar,wilaya_mere_numero,wilaya_mere_fr
+59,Aflou,أفلو,Aflou,أفلو,03,Laghouat
+59,Aflou,أفلو,Gueltat Sidi Saad,قلتة سيدي سعد,03,Laghouat
+59,Aflou,أفلو,Aïn Sidi Ali,عين سيدي علي,03,Laghouat
+59,Aflou,أفلو,El Beïdha,البيضاء,03,Laghouat
+59,Aflou,أفلو,Brida,بريدة,03,Laghouat
+59,Aflou,أفلو,El Ghicha,الغيشة,03,Laghouat
+59,Aflou,أفلو,Hadj Mechri,الحاج مشري,03,Laghouat
+59,Aflou,أفلو,Sebgag,سبقاق,03,Laghouat
+59,Aflou,أفلو,Taouiala,تاويالة,03,Laghouat
+59,Aflou,أفلو,Oued Morra,وادي مرة,03,Laghouat
+59,Aflou,أفلو,Oued M'Zi,وادي مزي,03,Laghouat
+59,Aflou,أفلو,Sidi Bouzid,سيدي بوزيد,03,Laghouat
+60,Barika,بريكة,Barika,بريكة,05,Batna
+60,Barika,بريكة,Bitam,بيطام,05,Batna
+60,Barika,بريكة,Abdelkader Azil,عزيل عبد القادر,05,Batna
+60,Barika,بريكة,Tilatou,تيلاطو,05,Batna
+60,Barika,بريكة,Seggana,سقانة,05,Batna
+60,Barika,بريكة,Djezzar,الجزار,05,Batna
+60,Barika,بريكة,M'Doukal,إمدوكل,05,Batna
+60,Barika,بريكة,Ouled Ammar,أولاد عمار,05,Batna
+61,El Kantara,القنطرة,El Kantara,القنطرة,07,Biskra
+61,El Kantara,القنطرة,Aïn Zaatout,عين زعطوط,07,Biskra
+61,El Kantara,القنطرة,Branis,برانيس,07,Biskra
+61,El Kantara,القنطرة,El Outaya,الوطاية,07,Biskra
+61,El Kantara,القنطرة,Djemourah,جمورة,07,Biskra
+62,Bir El Ater,بئر العاتر,Bir El Ater,بئر العاتر,12,Tébessa
+62,Bir El Ater,بئر العاتر,Negrine,نقرين,12,Tébessa
+62,Bir El Ater,بئر العاتر,El Ogla El Melha,العقلة المالحة,12,Tébessa
+62,Bir El Ater,بئر العاتر,Ferkane,فركان,12,Tébessa
+63,El Aricha,العريشة,El Aricha,العريشة,13,Tlemcen
+63,El Aricha,العريشة,El Gor,القور,13,Tlemcen
+63,El Aricha,العريشة,Sidi Djillali,سيدي الجيلالي,13,Tlemcen
+63,El Aricha,العريشة,El Bouihi,البويهي,13,Tlemcen
+64,Ksar Chellala,قصر الشلالة,Ksar Chellala,قصر الشلالة,14,Tiaret
+64,Ksar Chellala,قصر الشلالة,Zmalet El Emir Abdelkader,زمالة  الأمير عبد القادر,14,Tiaret
+64,Ksar Chellala,قصر الشلالة,Rechaiga,الرشايقة,14,Tiaret
+64,Ksar Chellala,قصر الشلالة,Hamadia,حمادية,14,Tiaret
+64,Ksar Chellala,قصر الشلالة,Serguine,سرغين,14,Tiaret
+64,Ksar Chellala,قصر الشلالة,Bougara,بوقرة,14,Tiaret
+65,Aïn Ouessara,عين وسارة,Aïn Ouessara,عين وسارة,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Birine,بيرين,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Bouira Lahdab,بويرة الأحداب,17,Djelfa
+65,Aïn Ouessara,عين وسارة,El Khemis,الخميس,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Sidi Ladjel,سيدي لعجال,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Had Sahary,حد الصحاري,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Guernini,قرنيني,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Benhar,بنهار,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Hassi Fedoul,حاسي فدول,17,Djelfa
+65,Aïn Ouessara,عين وسارة,Aïn Fekka,عين فقه,17,Djelfa
+66,Messaad,مسعد,Messaad,مسعد,17,Djelfa
+66,Messaad,مسعد,Sed Rahal,سد الرحال,17,Djelfa
+66,Messaad,مسعد,Faïdh El Botma,فيض البطمة,17,Djelfa
+66,Messaad,مسعد,Guettara,قطارة,17,Djelfa
+66,Messaad,مسعد,Selmana,سلمانة,17,Djelfa
+66,Messaad,مسعد,Oum Laadham,أم العظام,17,Djelfa
+66,Messaad,مسعد,Deldoul,دلدول,17,Djelfa
+66,Messaad,مسعد,Amourah,عمورة,17,Djelfa
+67,Ksar El Boukhari,قصر البخاري,Ksar El Boukhari,قصر البخاري,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Ouled Maaref,أولاد امعرف,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Aïn Boucif,عين بوسيف,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Derrag,دراق,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Bouaiche,بوعيش,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Kef Lakhdar,الكاف الاخضر,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Chelalet El Adhaoura,شلالة العذاورة,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Ouled Hellal,أولاد هلال,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Tafraout,تفراوت,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Boghar,بوغار,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Sidi Damed,سيدي دامد,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Aziz,عزيز,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Chahbounia,الشهبونية,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Cheniguel,شنيقل,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Aïn Ouksir,عين اقصير,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Oum El Djallil,أم الجليل,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,M'Fatha,مفاتحة,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Boughezoul,بوغزول,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,El Ouinet,العوينات,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Ouled Antar,أولاد عنتر,26,Médéa
+67,Ksar El Boukhari,قصر البخاري,Saneg,السانق,26,Médéa
+68,Bou Saâda,بوسعادة,Bou Saada,بوسعادة,28,M'Sila
+68,Bou Saâda,بوسعادة,Khoubana,خبانة,28,M'Sila
+68,Bou Saâda,بوسعادة,M'Cif,مسيف,28,M'Sila
+68,Bou Saâda,بوسعادة,Ouled Sidi Brahim,أولاد سيدي ابراهيم,28,M'Sila
+68,Bou Saâda,بوسعادة,Sidi Ameur,سيدي عامر,28,M'Sila
+68,Bou Saâda,بوسعادة,Tamsa,تامسة,28,M'Sila
+68,Bou Saâda,بوسعادة,Ben Srour,بن سرور,28,M'Sila
+68,Bou Saâda,بوسعادة,Ouled Slimane,أولاد سليمان,28,M'Sila
+68,Bou Saâda,بوسعادة,El Houamed,الحوامد,28,M'Sila
+68,Bou Saâda,بوسعادة,El Hamel,الهامل,28,M'Sila
+68,Bou Saâda,بوسعادة,Zarzour,زرزور,28,M'Sila
+68,Bou Saâda,بوسعادة,Mouhamed Boudiaf,محمد بوضياف,28,M'Sila
+68,Bou Saâda,بوسعادة,Benzouh,بن زوه,28,M'Sila
+68,Bou Saâda,بوسعادة,Bir Foda,بئر فضة,28,M'Sila
+68,Bou Saâda,بوسعادة,Aïn Farès,عين فارس,28,M'Sila
+68,Bou Saâda,بوسعادة,Sidi M'Hamed,سيدي امحمد,28,M'Sila
+68,Bou Saâda,بوسعادة,Menaâ,مناعة,28,M'Sila
+68,Bou Saâda,بوسعادة,Aïn El Meleh,عين الملح,28,M'Sila
+68,Bou Saâda,بوسعادة,Medjedel,امجدل,28,M'Sila
+68,Bou Saâda,بوسعادة,Slim,سليم,28,M'Sila
+68,Bou Saâda,بوسعادة,Aïn Errich,عين الريش,28,M'Sila
+68,Bou Saâda,بوسعادة,Oultem,ولتام,28,M'Sila
+68,Bou Saâda,بوسعادة,Djebel Messaad,جبل مساعد,28,M'Sila
+69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,32,El Bayadh
+69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,Aïn El Orak,عين العراك,32,El Bayadh
+69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,Arbaouat,اربوات,32,El Bayadh
+69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,Boussemghoun,بوسمغون,32,El Bayadh
+69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,Chellala,شلالة,32,El Bayadh
+69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,El Bnoud,البنود,32,El Bayadh
+69,El Abiodh Sidi Cheikh,الأبيض سيدي الشيخ,El Meharra,المحرة,32,El Bayadh
