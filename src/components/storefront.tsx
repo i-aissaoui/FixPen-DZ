@@ -204,8 +204,8 @@ export default function Storefront() {
 
   return (
     <>
-      <div className="sticky top-0 z-50 flex h-8 items-center justify-center overflow-hidden bg-slate-950 px-3 text-center text-[10px] font-bold text-white sm:text-xs">
-        <span className="truncate">{t(lang, "announcement")}</span>
+      <div className="flex items-center justify-center bg-slate-950 px-3 py-2 text-center text-xs font-bold leading-5 text-white">
+        {t(lang, "announcement")}
       </div>
 
       <SiteHeader

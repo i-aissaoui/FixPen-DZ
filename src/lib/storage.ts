@@ -4,7 +4,7 @@ import type { Order, StockMap, StoreSettings } from "./types";
 export const STORAGE_KEYS = {
   orders: "fixpendz.orders.v1",
   stock: "fixpendz.stock.v1",
-  settings: "fixpendz.settings.v1",
+  settings: "fixpendz.settings.v2",
   lang: "fixpendz.lang.v1",
 } as const;
 

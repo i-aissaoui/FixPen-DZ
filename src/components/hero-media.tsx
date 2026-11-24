@@ -113,19 +113,21 @@ function PhotoSlide({
   lang: Lang;
 }) {
   return (
-    <div className="flex min-h-[280px] items-center justify-center bg-slate-950 sm:min-h-[420px]">
-      <Image
-        alt={lang === "ar" ? media.altAr : media.altFr}
-        className="h-auto w-full object-contain"
-        height={media.height}
-        priority={priority}
-        sizes="100vw"
-        src={media.src}
-        width={media.width}
-      />
-      <span className="absolute bottom-3 right-3 rounded-full bg-white px-3 py-1.5 text-[10px] font-black text-slate-900 shadow-lg sm:text-xs">
+    <div className="flex flex-col bg-slate-950">
+      <div className="flex min-h-[240px] items-center justify-center p-2 sm:min-h-[360px]">
+        <Image
+          alt={lang === "ar" ? media.altAr : media.altFr}
+          className="h-auto max-h-[60vh] w-full object-contain"
+          height={media.height}
+          priority={priority}
+          sizes="100vw"
+          src={media.src}
+          width={media.width}
+        />
+      </div>
+      <div className="bg-slate-900 px-3 py-2 text-center text-xs font-bold leading-5 text-white">
         {lang === "ar" ? media.labelAr : media.labelFr}
-      </span>
+      </div>
     </div>
   );
 }

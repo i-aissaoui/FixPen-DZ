@@ -95,7 +95,7 @@ export default function ShadeSelector({
               return (
                 <div
                   aria-label={`${shade.code} ${lang === "ar" ? shade.nameAr : shade.nameFr}`}
-                  className={`group relative flex min-h-44 flex-col overflow-hidden rounded-2xl border bg-white p-3 text-right transition-all duration-200 sm:min-h-48 ${
+                  className={`group relative flex min-h-44 flex-col rounded-2xl border bg-white p-3 text-right transition-all duration-200 sm:min-h-48 ${
                     quantity > 0
                       ? "border-emerald-500 ring-2 ring-emerald-200"
                       : isPreview
@@ -128,7 +128,7 @@ export default function ShadeSelector({
                     <span className="block size-full rounded-full" style={{ backgroundColor: shade.hex }} />
                   </div>
 
-                  <p className="line-clamp-2 text-[11px] font-bold leading-4 text-slate-800 sm:text-xs">
+                  <p className="text-xs font-bold leading-5 text-slate-800">
                     {lang === "ar" ? shade.nameAr : shade.nameFr}
                   </p>
                   <p dir="ltr" className="num mt-1 truncate text-left text-[10px] text-slate-400">

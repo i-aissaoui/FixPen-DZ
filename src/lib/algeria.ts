@@ -28,8 +28,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 16,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "02",
@@ -39,8 +39,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 35,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 400,
+    "home": 700
   },
   {
     "id": "03",
@@ -50,8 +50,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 12,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 500,
+    "home": 900
   },
   {
     "id": "04",
@@ -62,7 +62,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 29,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "05",
@@ -73,7 +73,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 53,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "06",
@@ -84,7 +84,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 52,
     "stopDesk": 400,
-    "home": 600
+    "home": 690
   },
   {
     "id": "07",
@@ -95,7 +95,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 22,
     "stopDesk": 500,
-    "home": 800
+    "home": 900
   },
   {
     "id": "08",
@@ -105,8 +105,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 12,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "09",
@@ -116,8 +116,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 25,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 250,
+    "home": 500
   },
   {
     "id": "10",
@@ -127,8 +127,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 45,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 400,
+    "home": 650
   },
   {
     "id": "11",
@@ -138,8 +138,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 5,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 800,
+    "home": 1400
   },
   {
     "id": "12",
@@ -150,7 +150,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 24,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "13",
@@ -161,7 +161,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 49,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "14",
@@ -171,8 +171,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 36,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 400,
+    "home": 700
   },
   {
     "id": "15",
@@ -182,8 +182,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 67,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 350,
+    "home": 630
   },
   {
     "id": "16",
@@ -193,8 +193,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 57,
-    "stopDesk": 300,
-    "home": 500
+    "stopDesk": 200,
+    "home": 380
   },
   {
     "id": "17",
@@ -205,7 +205,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 18,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "18",
@@ -215,8 +215,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 28,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "19",
@@ -226,8 +226,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 60,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "20",
@@ -238,7 +238,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 16,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "21",
@@ -248,8 +248,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 38,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 700
   },
   {
     "id": "22",
@@ -259,8 +259,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 52,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "23",
@@ -270,8 +270,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 12,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 700
   },
   {
     "id": "24",
@@ -281,8 +281,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 34,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 700
   },
   {
     "id": "25",
@@ -292,8 +292,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 12,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 700
   },
   {
     "id": "26",
@@ -303,8 +303,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 43,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 390,
+    "home": 600
   },
   {
     "id": "27",
@@ -314,8 +314,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 32,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "28",
@@ -325,8 +325,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 24,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 400,
+    "home": 650
   },
   {
     "id": "29",
@@ -336,8 +336,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 47,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "30",
@@ -347,8 +347,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 8,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "31",
@@ -358,8 +358,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 26,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "32",
@@ -370,7 +370,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 15,
     "stopDesk": 500,
-    "home": 800
+    "home": 900
   },
   {
     "id": "33",
@@ -380,8 +380,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 4,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 790,
+    "home": 1300
   },
   {
     "id": "34",
@@ -391,8 +391,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 34,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "35",
@@ -403,7 +403,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 32,
     "stopDesk": 350,
-    "home": 550
+    "home": 590
   },
   {
     "id": "36",
@@ -413,8 +413,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 24,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 700
   },
   {
     "id": "37",
@@ -424,8 +424,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 2,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "38",
@@ -436,7 +436,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 22,
     "stopDesk": 400,
-    "home": 600
+    "home": 700
   },
   {
     "id": "39",
@@ -446,8 +446,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 22,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "40",
@@ -457,8 +457,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 21,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 400,
+    "home": 790
   },
   {
     "id": "41",
@@ -469,7 +469,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 26,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "42",
@@ -479,8 +479,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 28,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 250,
+    "home": 500
   },
   {
     "id": "43",
@@ -490,8 +490,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 32,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "44",
@@ -501,8 +501,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 36,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 400,
+    "home": 650
   },
   {
     "id": "45",
@@ -512,8 +512,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 12,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "46",
@@ -523,8 +523,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 28,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 390,
+    "home": 690
   },
   {
     "id": "47",
@@ -535,7 +535,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 10,
     "stopDesk": 500,
-    "home": 800
+    "home": 900
   },
   {
     "id": "48",
@@ -546,7 +546,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 38,
     "stopDesk": 400,
-    "home": 600
+    "home": 700
   },
   {
     "id": "49",
@@ -556,8 +556,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 10,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "50",
@@ -567,8 +567,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 2,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 800,
+    "home": 1400
   },
   {
     "id": "51",
@@ -579,7 +579,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "",
     "communeCount": 6,
     "stopDesk": 500,
-    "home": 800
+    "home": 900
   },
   {
     "id": "52",
@@ -589,8 +589,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 9,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "53",
@@ -600,8 +600,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 3,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 790,
+    "home": 1300
   },
   {
     "id": "54",
@@ -611,8 +611,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 2,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 800,
+    "home": 1400
   },
   {
     "id": "55",
@@ -622,8 +622,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 13,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "56",
@@ -633,8 +633,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 2,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 790,
+    "home": 1300
   },
   {
     "id": "57",
@@ -644,8 +644,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 8,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "58",
@@ -655,8 +655,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "",
     "motherNameFr": "",
     "communeCount": 3,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   },
   {
     "id": "59",
@@ -666,8 +666,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "03",
     "motherNameFr": "Laghouat",
     "communeCount": 12,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 500,
+    "home": 900
   },
   {
     "id": "60",
@@ -678,7 +678,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "Batna",
     "communeCount": 8,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "61",
@@ -689,7 +689,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "Biskra",
     "communeCount": 5,
     "stopDesk": 500,
-    "home": 800
+    "home": 900
   },
   {
     "id": "62",
@@ -700,7 +700,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "Tébessa",
     "communeCount": 4,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "63",
@@ -711,7 +711,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "Tlemcen",
     "communeCount": 4,
     "stopDesk": 400,
-    "home": 600
+    "home": 790
   },
   {
     "id": "64",
@@ -721,8 +721,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "14",
     "motherNameFr": "Tiaret",
     "communeCount": 6,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 400,
+    "home": 700
   },
   {
     "id": "65",
@@ -733,7 +733,7 @@ export const WILAYAS: Wilaya[] = [
     "motherNameFr": "Djelfa",
     "communeCount": 10,
     "stopDesk": 400,
-    "home": 600
+    "home": 700
   },
   {
     "id": "66",
@@ -743,8 +743,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "17",
     "motherNameFr": "Djelfa",
     "communeCount": 8,
-    "stopDesk": 400,
-    "home": 600
+    "stopDesk": 500,
+    "home": 900
   },
   {
     "id": "67",
@@ -754,8 +754,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "26",
     "motherNameFr": "Médéa",
     "communeCount": 21,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 390,
+    "home": 600
   },
   {
     "id": "68",
@@ -765,8 +765,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "28",
     "motherNameFr": "M'Sila",
     "communeCount": 23,
-    "stopDesk": 350,
-    "home": 550
+    "stopDesk": 400,
+    "home": 790
   },
   {
     "id": "69",
@@ -776,8 +776,8 @@ export const WILAYAS: Wilaya[] = [
     "motherId": "32",
     "motherNameFr": "El Bayadh",
     "communeCount": 7,
-    "stopDesk": 500,
-    "home": 800
+    "stopDesk": 600,
+    "home": 1100
   }
 ];
 

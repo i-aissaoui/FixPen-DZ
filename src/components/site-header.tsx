@@ -11,7 +11,7 @@ type Props = {
 
 export default function SiteHeader({ lang, onToggleLang, onOrder }: Props) {
   return (
-    <header className="sticky top-8 z-40 border-b border-slate-100 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2.5">
           <span className="flex size-10 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md">
