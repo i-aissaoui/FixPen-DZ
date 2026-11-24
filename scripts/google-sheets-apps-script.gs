@@ -1,3 +1,5 @@
+const SPREADSHEET_ID = "";
+
 const HEADERS = [
   "order_id",
   "created_at",
@@ -21,6 +23,9 @@ const HEADERS = [
 ];
 
 function sheet() {
+  if (SPREADSHEET_ID.trim()) {
+    return SpreadsheetApp.openById(SPREADSHEET_ID.trim()).getActiveSheet();
+  }
   return SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 }
 
@@ -64,7 +69,11 @@ function orderRow(order) {
 }
 
 function doGet() {
-  return json({ ok: true, service: "FixPen DZ Google Sheets" });
+  return json({
+    ok: true,
+    service: "FixPen DZ Google Sheets",
+    configured: Boolean(SPREADSHEET_ID.trim()),
+  });
 }
 
 function doPost(event) {
