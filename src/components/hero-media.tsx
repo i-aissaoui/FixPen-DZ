@@ -7,9 +7,10 @@ import { t, type Lang } from "@/lib/i18n";
 import {
   DEMO_GIF_ALT_AR,
   DEMO_GIF_ALT_FR,
-  DEMO_GIF_HEIGHT,
-  DEMO_GIF_SRC,
-  DEMO_GIF_WIDTH,
+  DEMO_POSTER_SRC,
+  DEMO_VIDEO_HEIGHT,
+  DEMO_VIDEO_SRC,
+  DEMO_VIDEO_WIDTH,
   MEDIA_IMAGES,
 } from "@/lib/media";
 
@@ -34,7 +35,7 @@ export default function HeroMedia({ lang, onExploreColors }: Props) {
 
   return (
     <div className="relative">
-      <div className="relative w-full overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-950 shadow-[0_30px_80px_-35px_rgba(15,23,42,0.65)] sm:rounded-[2rem]">
+      <div className="relative mx-3 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-[0_30px_80px_-35px_rgba(15,23,42,0.65)] sm:mx-4 sm:rounded-3xl">
         <PhotoSlide lang={lang} media={MEDIA_IMAGES[active]} priority={active === 0} />
 
         <button
@@ -72,24 +73,30 @@ export default function HeroMedia({ lang, onExploreColors }: Props) {
           >
             <Image
               alt=""
-              className="max-h-full max-w-full object-contain"
-              height={media.height}
+              className="object-cover"
+              fill
+              sizes="56px"
               src={media.src}
-              width={media.width}
             />
           </button>
         ))}
       </div>
 
-      <div className="mt-3 flex items-center justify-center overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 p-2">
-        <Image
-          alt={lang === "ar" ? DEMO_GIF_ALT_AR : DEMO_GIF_ALT_FR}
-          className="h-auto max-h-[520px] w-auto max-w-full object-contain"
-          height={DEMO_GIF_HEIGHT}
-          src={DEMO_GIF_SRC}
-          unoptimized
-          width={DEMO_GIF_WIDTH}
-        />
+      <div className="relative mx-3 mt-3 aspect-[9/16] overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 sm:mx-4 sm:aspect-[4/5]">
+        <video
+          aria-label={lang === "ar" ? DEMO_GIF_ALT_AR : DEMO_GIF_ALT_FR}
+          autoPlay
+          className="size-full object-cover"
+          height={DEMO_VIDEO_HEIGHT}
+          loop
+          muted
+          playsInline
+          poster={DEMO_POSTER_SRC}
+          preload="metadata"
+          width={DEMO_VIDEO_WIDTH}
+        >
+          <source src={DEMO_VIDEO_SRC} type="video/mp4" />
+        </video>
       </div>
 
       <button
@@ -114,15 +121,14 @@ function PhotoSlide({
 }) {
   return (
     <div className="flex flex-col bg-slate-950">
-      <div className="flex min-h-[240px] items-center justify-center p-2 sm:min-h-[360px]">
+      <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[4/3]">
         <Image
           alt={lang === "ar" ? media.altAr : media.altFr}
-          className="h-auto max-h-[60vh] w-full object-contain"
-          height={media.height}
+          className="object-cover"
+          fill
           priority={priority}
-          sizes="100vw"
+          sizes="(max-width: 640px) 90vw, 45vw"
           src={media.src}
-          width={media.width}
         />
       </div>
       <div className="bg-slate-900 px-3 py-2 text-center text-xs font-bold leading-5 text-white">

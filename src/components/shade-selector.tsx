@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Minus, PackageX, Plus, Sparkles } from "lucide-react";
-import { isShadeAvailable, type Shade, type SurfaceGroup } from "@/lib/colors";
+import { isShadeAvailable, type Shade } from "@/lib/colors";
 import type { Lang } from "@/lib/i18n";
 import { t } from "@/lib/i18n";
 import { MAX_PENS } from "@/lib/pricing";
@@ -14,37 +14,22 @@ type Props = {
   shades: Shade[];
   selection: Selection;
   previewId: string | null;
-  surfaceFilter: SurfaceGroup | "all";
   stock: StockMap;
   activeCount: number;
   onPreview: (id: string) => void;
   onChangeQuantity: (id: string, delta: number) => void;
-  onFilter: (filter: SurfaceGroup | "all") => void;
 };
-
-const FILTERS: Array<{ key: SurfaceGroup | "all"; label: "filterAll" | "filterWood" | "filterAppliance" | "filterAluminum" | "filterCar" }> = [
-  { key: "all", label: "filterAll" },
-  { key: "wood", label: "filterWood" },
-  { key: "appliance", label: "filterAppliance" },
-  { key: "aluminum", label: "filterAluminum" },
-  { key: "car", label: "filterCar" },
-];
 
 export default function ShadeSelector({
   lang,
   shades,
   selection,
   previewId,
-  surfaceFilter,
   stock,
   activeCount,
   onPreview,
   onChangeQuantity,
-  onFilter,
 }: Props) {
-  const visibleShades = shades.filter(
-    (shade) => surfaceFilter === "all" || shade.groups.includes(surfaceFilter),
-  );
   const preview = shades.find((shade) => shade.id === previewId && isShadeAvailable(shade, stock))
     ?? shades.find((shade) => isShadeAvailable(shade, stock));
   const totalSelected = getSelectionCount(selection);
@@ -68,26 +53,9 @@ export default function ShadeSelector({
           </div>
         </div>
 
-        <div className="no-scrollbar mb-7 flex gap-2 overflow-x-auto pb-1">
-          {FILTERS.map((filter) => (
-            <button
-              className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold transition sm:text-sm ${
-                surfaceFilter === filter.key
-                  ? "border-emerald-600 bg-emerald-600 text-white shadow-md"
-                  : "border-slate-200 bg-white text-slate-600 hover:border-emerald-300 hover:text-emerald-700"
-              }`}
-              key={filter.key}
-              onClick={() => onFilter(filter.key)}
-              type="button"
-            >
-              {t(lang, filter.label)}
-            </button>
-          ))}
-        </div>
-
         <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {visibleShades.map((shade) => {
+            {shades.map((shade) => {
               const available = isShadeAvailable(shade, stock);
               const quantity = selection[shade.id] ?? 0;
               const isPreview = preview?.id === shade.id;
@@ -125,7 +93,7 @@ export default function ShadeSelector({
                   </div>
 
                   <div className="mx-auto my-3 flex size-16 items-center justify-center sm:size-20">
-                    <span className="block size-full rounded-full" style={{ backgroundColor: shade.hex }} />
+                    <span className="block size-full rounded-full border border-slate-200" style={{ backgroundColor: shade.hex }} />
                   </div>
 
                   <p className="text-xs font-bold leading-5 text-slate-800">
@@ -175,14 +143,6 @@ export default function ShadeSelector({
                     <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
                       {lang === "ar" ? preview.surfacesAr : preview.surfacesFr}
                     </p>
-                  </div>
-
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {preview.groups.map((group) => (
-                      <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-600" key={group}>
-                        {t(lang, `filter${group.charAt(0).toUpperCase()}${group.slice(1)}` as "filterWood")}
-                      </span>
-                    ))}
                   </div>
 
                   <div className="mt-5 flex items-center justify-between gap-3 rounded-2xl bg-cloud px-4 py-3">

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Camera, X } from "lucide-react";
 import { t, type Lang } from "@/lib/i18n";
-import { DEMO_GIF_ALT_AR, DEMO_GIF_ALT_FR, DEMO_GIF_SRC, MEDIA_IMAGES } from "@/lib/media";
+import { DEMO_GIF_ALT_AR, DEMO_GIF_ALT_FR, DEMO_POSTER_SRC, MEDIA_IMAGES } from "@/lib/media";
 
 type Props = { lang: Lang };
 
@@ -29,7 +29,7 @@ export default function ProductGallery({ lang }: Props) {
       wide: index === 5,
     })),
     {
-      src: DEMO_GIF_SRC,
+      src: DEMO_POSTER_SRC,
       alt: lang === "ar" ? DEMO_GIF_ALT_AR : DEMO_GIF_ALT_FR,
       gif: true,
     },

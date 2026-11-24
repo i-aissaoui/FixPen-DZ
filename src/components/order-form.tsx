@@ -213,7 +213,7 @@ export default function OrderForm({
                   {selectedLines.map((line) => (
                     <span className="flex items-center gap-2 rounded-full border border-slate-200 bg-white py-1 pl-1 pr-2 shadow-sm" key={line.shade.id}>
                       <span
-                        className="size-7 rounded-full"
+                        className="size-7 rounded-full border border-slate-200"
                         style={{ backgroundColor: line.shade.hex }}
                       />
                       <span dir="ltr" className="num text-xs font-bold text-slate-800">{line.shade.code}</span>

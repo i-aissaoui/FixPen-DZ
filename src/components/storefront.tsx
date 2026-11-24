@@ -11,7 +11,7 @@ import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
 import StickyMobileBar from "./sticky-mobile-bar";
 import { getWilaya } from "@/lib/algeria";
-import { ACTIVE_SHADES, getShade, isShadeAvailable, type SurfaceGroup } from "@/lib/colors";
+import { ACTIVE_SHADES, getShade, isShadeAvailable } from "@/lib/colors";
 import { t, type Lang } from "@/lib/i18n";
 import { pixelEvents } from "@/lib/meta-pixel";
 import { calculateTotals, DEFAULT_SETTINGS, getProductSubtotal } from "@/lib/pricing";
@@ -40,7 +40,6 @@ export default function Storefront() {
   const [hydrated, setHydrated] = useState(false);
   const [selection, setSelection] = useState<Selection>({});
   const [previewId, setPreviewId] = useState("01");
-  const [surfaceFilter, setSurfaceFilter] = useState<SurfaceGroup | "all">("all");
   const [stock, setStock] = useState<StockMap>({});
   const [settings, setSettings] = useState<StoreSettings>(DEFAULT_SETTINGS);
   const [draft, setDraft] = useState<OrderDraft>(INITIAL_DRAFT);
@@ -220,13 +219,13 @@ export default function Storefront() {
           <div className="pointer-events-none absolute -right-32 bottom-0 size-80 rounded-full bg-amber-100/40 blur-3xl" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-[11px] font-black text-emerald-800 sm:text-xs">
-                <Sparkles className="size-3.5" /> {t(lang, "heroBadge")}
+              <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-center text-xs font-black leading-5 text-emerald-800">
+                <Sparkles className="size-3.5 shrink-0" /> {t(lang, "heroBadge")}
               </span>
-              <h1 className="mt-5 text-[1.7rem] font-black leading-[1.35] text-ink sm:text-4xl lg:text-[2.7rem] lg:leading-[1.25]">
+              <h1 className="mt-5 max-w-full break-words text-2xl font-black leading-9 text-ink sm:text-4xl sm:leading-tight lg:text-[2.6rem]">
                 {t(lang, "heroTitle")}
               </h1>
-              <p className="mt-4 max-w-xl text-sm leading-8 text-slate-600 sm:text-base">{t(lang, "heroSubtitle")}</p>
+              <p className="mt-4 max-w-full break-words text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">{t(lang, "heroSubtitle")}</p>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 <button
@@ -264,12 +263,10 @@ export default function Storefront() {
           shades={ACTIVE_SHADES}
           selection={selection}
           previewId={previewId}
-          surfaceFilter={surfaceFilter}
           stock={stock}
           activeCount={activeCount}
           onPreview={handlePreview}
           onChangeQuantity={handleChangeQuantity}
-          onFilter={setSurfaceFilter}
         />
 
         <OrderForm

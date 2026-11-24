@@ -433,7 +433,7 @@ export default function AdminDashboard() {
                   <div className={`rounded-2xl border p-3 ${available ? "border-emerald-200 bg-emerald-50/40" : "border-slate-200 bg-white"}`} key={shade.id}>
                     <div className="flex items-center gap-3">
                       <span
-                        className="size-11 shrink-0 rounded-full"
+                        className="size-11 shrink-0 rounded-full border border-slate-200"
                         style={{ backgroundColor: shade.hex }}
                       />
                       <div className="min-w-0">
