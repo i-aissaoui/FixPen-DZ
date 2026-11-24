@@ -250,7 +250,7 @@ export default function AdminDashboard() {
 
           {process.env.NODE_ENV !== "production" && (
             <p dir="ltr" className="num mt-4 text-center text-[10px] text-slate-400">
-              local password: fixpen2026
+              local password: ismail0202
             </p>
           )}
         </form>

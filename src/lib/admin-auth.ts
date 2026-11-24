@@ -29,7 +29,7 @@ export function isAdminToken(token: string | undefined | null) {
 }
 
 export function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD ?? "fixpen2026";
+  return process.env.ADMIN_PASSWORD ?? "ismail0202";
 }
 
 export const adminCookieOptions = {
