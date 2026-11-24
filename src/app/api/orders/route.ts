@@ -1,3 +1,4 @@
+import { sendOrderToGoogleSheets } from "@/lib/google-sheets";
 import { appendOrderToCsv } from "@/lib/order-store";
 import { MAX_PENS } from "@/lib/pricing";
 import type { Order } from "@/lib/types";
@@ -60,6 +61,8 @@ export async function POST(request: Request) {
     csvSaved = false;
   }
 
+  const googleSheet = await sendOrderToGoogleSheets(body);
+
   const webhookUrl = process.env.ORDERS_WEBHOOK_URL;
   let forwarded = false;
 
@@ -82,7 +85,15 @@ export async function POST(request: Request) {
   }
 
   return Response.json(
-    { ok: true, orderId: body.id, csvSaved, forwarded, webhookConfigured: Boolean(webhookUrl) },
+    {
+      ok: true,
+      orderId: body.id,
+      csvSaved,
+      googleSheetSaved: googleSheet.sent,
+      googleSheetConfigured: !googleSheet.skipped,
+      forwarded,
+      webhookConfigured: Boolean(webhookUrl),
+    },
     { status: 201 },
   );
 }

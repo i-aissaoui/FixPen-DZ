@@ -190,8 +190,8 @@ export default function Storefront() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(order),
       });
-      const data = (await response.json()) as { csvSaved?: boolean };
-      csvSaved = Boolean(data.csvSaved);
+      const data = (await response.json()) as { csvSaved?: boolean; googleSheetSaved?: boolean };
+      csvSaved = Boolean(data.csvSaved || data.googleSheetSaved);
     } catch {
       csvSaved = false;
     }

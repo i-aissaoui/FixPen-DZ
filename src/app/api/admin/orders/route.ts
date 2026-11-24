@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { ADMIN_COOKIE, isAdminToken } from "@/lib/admin-auth";
+import { updateGoogleSheetStatus } from "@/lib/google-sheets";
 import { readOrdersFromCsv, updateOrderStatusInCsv } from "@/lib/order-store";
 import type { OrderStatus } from "@/lib/types";
 
@@ -47,7 +48,8 @@ export async function PATCH(request: Request) {
 
   try {
     const orders = await updateOrderStatusInCsv(payload.id, payload.status as OrderStatus);
-    return Response.json({ ok: true, orders });
+    const googleSheet = await updateGoogleSheetStatus(payload.id, payload.status as OrderStatus);
+    return Response.json({ ok: true, orders, googleSheetUpdated: googleSheet.sent });
   } catch {
     return Response.json({ ok: false, error: "Unable to update order" }, { status: 500 });
   }
