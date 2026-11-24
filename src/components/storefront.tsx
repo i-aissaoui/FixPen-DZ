@@ -218,7 +218,7 @@ export default function Storefront() {
           <div className="pointer-events-none absolute -left-32 top-10 size-80 rounded-full bg-emerald-100/50 blur-3xl" />
           <div className="pointer-events-none absolute -right-32 bottom-0 size-80 rounded-full bg-amber-100/40 blur-3xl" />
           <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-            <div>
+            <div className="min-w-0">
               <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 text-center text-xs font-black leading-5 text-emerald-800">
                 <Sparkles className="size-3.5 shrink-0" /> {t(lang, "heroBadge")}
               </span>
@@ -252,7 +252,7 @@ export default function Storefront() {
               </div>
             </div>
 
-            <div id="demo" className="scroll-mt-28">
+            <div id="demo" className="min-w-0 scroll-mt-28">
               <HeroMedia lang={lang} onExploreColors={() => scrollTo("shades")} />
             </div>
           </div>

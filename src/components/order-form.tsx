@@ -375,7 +375,7 @@ function TierCard({ active, badge, label }: { active: boolean; badge?: string; l
           {badge}
         </span>
       )}
-      <p className="text-[11px] font-bold leading-5 text-slate-700">{label}</p>
+      <p className="break-words text-[11px] font-bold leading-5 text-slate-700">{label}</p>
     </div>
   );
 }

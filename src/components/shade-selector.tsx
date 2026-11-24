@@ -96,7 +96,7 @@ export default function ShadeSelector({
                     <span className="block size-full rounded-full border border-slate-200" style={{ backgroundColor: shade.hex }} />
                   </div>
 
-                  <p className="text-xs font-bold leading-5 text-slate-800">
+                  <p className="break-words text-xs font-bold leading-5 text-slate-800">
                     {lang === "ar" ? shade.nameAr : shade.nameFr}
                   </p>
                   <p dir="ltr" className="num mt-1 truncate text-left text-[10px] text-slate-400">

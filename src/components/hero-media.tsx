@@ -34,8 +34,8 @@ export default function HeroMedia({ lang, onExploreColors }: Props) {
   }
 
   return (
-    <div className="relative">
-      <div className="relative mx-3 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-[0_30px_80px_-35px_rgba(15,23,42,0.65)] sm:mx-4 sm:rounded-3xl">
+    <div className="relative min-w-0 max-w-full">
+      <div className="relative mx-3 min-w-0 max-w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-[0_30px_80px_-35px_rgba(15,23,42,0.65)] sm:mx-4 sm:rounded-3xl">
         <PhotoSlide lang={lang} media={MEDIA_IMAGES[active]} priority={active === 0} />
 
         <button
@@ -82,7 +82,7 @@ export default function HeroMedia({ lang, onExploreColors }: Props) {
         ))}
       </div>
 
-      <div className="relative mx-3 mt-3 aspect-[9/16] overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 sm:mx-4 sm:aspect-[4/5]">
+      <div className="relative mx-3 mt-3 aspect-square overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 sm:mx-4 sm:aspect-[4/3]">
         <video
           aria-label={lang === "ar" ? DEMO_GIF_ALT_AR : DEMO_GIF_ALT_FR}
           autoPlay
@@ -121,7 +121,7 @@ function PhotoSlide({
 }) {
   return (
     <div className="flex flex-col bg-slate-950">
-      <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[4/3]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
           alt={lang === "ar" ? media.altAr : media.altFr}
           className="object-cover"
