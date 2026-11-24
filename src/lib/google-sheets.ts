@@ -1,6 +1,6 @@
 import type { Order, OrderStatus } from "./types";
 
-export const GOOGLE_SHEETS_WEBHOOK_URL = "";
+export const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyzFmOl0TiQbSh3OEJC1wJmdC2psZ958wML7ky3OdQ4btTxpnMj3bT8CMRx1wAyRi7r/exec";
 
 type SheetResult = {
   sent: boolean;
