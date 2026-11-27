@@ -94,13 +94,32 @@ export const pixelEvents = {
       value,
       currency: "DZD",
     }),
-  purchase: (orderId: string, shadeCodes: string[], value: number) =>
-    trackPixel("Purchase", {
-      content_name: "FixPen DZ COD Order",
-      content_type: "product",
-      content_ids: shadeCodes,
-      value,
-      currency: "DZD",
-      order_id: orderId,
-    }),
+  purchase: (orderId: string, shadeCodes: string[], value: number, eventId?: string) => {
+    if (!eventId) {
+      trackPixel("Purchase", {
+        content_name: "FixPen DZ COD Order",
+        content_type: "product",
+        content_ids: shadeCodes,
+        value,
+        currency: "DZD",
+        order_id: orderId,
+      });
+      return;
+    }
+
+    initPixel();
+    window.fbq?.(
+      "track",
+      "Purchase",
+      {
+        content_name: "FixPen DZ COD Order",
+        content_type: "product",
+        content_ids: shadeCodes,
+        value,
+        currency: "DZD",
+        order_id: orderId,
+      },
+      { eventID: eventId },
+    );
+  },
 };

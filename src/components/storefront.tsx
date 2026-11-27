@@ -182,6 +182,11 @@ export default function Storefront() {
       notes: draft.notes.trim() || undefined,
     };
 
+    const pixelEventId =
+      typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : `${order.id}-${Date.now()}`;
+
     setSubmitting(true);
 
     let csvSaved = false;
@@ -190,7 +195,7 @@ export default function Storefront() {
       const response = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(order),
+        body: JSON.stringify({ ...order, pixelEventId }),
       });
       const data = (await response.json()) as { ok?: boolean; csvSaved?: boolean; googleSheetSaved?: boolean };
       orderAccepted = response.ok && data.ok !== false;
@@ -199,7 +204,7 @@ export default function Storefront() {
       csvSaved = false;
     }
 
-    if (orderAccepted) pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal);
+    if (orderAccepted) pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal, pixelEventId);
 
     setConfirmation(order);
     setError(csvSaved ? "" : t(lang, "csvSaveWarning"));

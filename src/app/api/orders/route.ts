@@ -1,4 +1,6 @@
+import { cookies } from "next/headers";
 import { sendOrderToGoogleSheets } from "@/lib/google-sheets";
+import { isMetaCapiConfigured, sendServerPurchase } from "@/lib/meta-capi";
 import { appendOrderToCsv } from "@/lib/order-store";
 import { MAX_PENS } from "@/lib/pricing";
 import type { Order } from "@/lib/types";
@@ -63,6 +65,18 @@ export async function POST(request: Request) {
 
   const googleSheet = await sendOrderToGoogleSheets(body);
 
+  const pixelEventId = (body as Order & { pixelEventId?: unknown }).pixelEventId;
+  const cookieStore = await cookies();
+  const metaCapiSent = await sendServerPurchase({
+    eventId: typeof pixelEventId === "string" ? pixelEventId : "",
+    order: body,
+    userAgent: request.headers.get("user-agent") ?? "",
+    ip: request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "",
+    fbp: cookieStore.get("_fbp")?.value,
+    fbc: cookieStore.get("_fbc")?.value,
+    sourceUrl: request.headers.get("referer") ?? "https://fixpen-dz.vercel.app",
+  });
+
   const webhookUrl = process.env.ORDERS_WEBHOOK_URL;
   let forwarded = false;
 
@@ -91,6 +105,8 @@ export async function POST(request: Request) {
       csvSaved,
       googleSheetSaved: googleSheet.sent,
       googleSheetConfigured: !googleSheet.skipped,
+      metaCapiSent,
+      metaCapiConfigured: isMetaCapiConfigured(),
       forwarded,
       webhookConfigured: Boolean(webhookUrl),
     },
