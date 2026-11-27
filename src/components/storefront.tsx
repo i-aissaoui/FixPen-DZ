@@ -185,19 +185,21 @@ export default function Storefront() {
     setSubmitting(true);
 
     let csvSaved = false;
+    let orderAccepted = false;
     try {
       const response = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(order),
       });
-      const data = (await response.json()) as { csvSaved?: boolean; googleSheetSaved?: boolean };
+      const data = (await response.json()) as { ok?: boolean; csvSaved?: boolean; googleSheetSaved?: boolean };
+      orderAccepted = response.ok && data.ok !== false;
       csvSaved = Boolean(data.csvSaved || data.googleSheetSaved);
     } catch {
       csvSaved = false;
     }
 
-    if (csvSaved) pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal);
+    if (orderAccepted) pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal);
 
     setConfirmation(order);
     setError(csvSaved ? "" : t(lang, "csvSaveWarning"));
