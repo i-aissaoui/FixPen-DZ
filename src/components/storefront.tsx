@@ -183,7 +183,6 @@ export default function Storefront() {
     };
 
     setSubmitting(true);
-    pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal);
 
     let csvSaved = false;
     try {
@@ -197,6 +196,8 @@ export default function Storefront() {
     } catch {
       csvSaved = false;
     }
+
+    if (csvSaved) pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal);
 
     setConfirmation(order);
     setError(csvSaved ? "" : t(lang, "csvSaveWarning"));

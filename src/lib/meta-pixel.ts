@@ -22,7 +22,7 @@ declare global {
   }
 }
 
-const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "";
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "1456060756089112";
 let initialized = false;
 
 export function initPixel() {
