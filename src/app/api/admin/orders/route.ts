@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { ADMIN_COOKIE, isAdminToken } from "@/lib/admin-auth";
-import { updateGoogleSheetStatus } from "@/lib/google-sheets";
+import { readOrdersFromGoogleSheets, updateGoogleSheetStatus } from "@/lib/google-sheets";
 import { readOrdersFromCsv, updateOrderStatusInCsv } from "@/lib/order-store";
 import type { OrderStatus } from "@/lib/types";
 
@@ -11,14 +11,20 @@ async function isAuthorized() {
   return isAdminToken(token);
 }
 
+async function getOrders() {
+  const sheetOrders = await readOrdersFromGoogleSheets();
+  if (sheetOrders) return { orders: sheetOrders, source: "google" as const };
+  return { orders: await readOrdersFromCsv(), source: "csv" as const };
+}
+
 export async function GET() {
   if (!(await isAuthorized())) {
     return Response.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const orders = await readOrdersFromCsv();
-    return Response.json({ ok: true, orders });
+    const { orders, source } = await getOrders();
+    return Response.json({ ok: true, orders, source });
   } catch {
     return Response.json({ ok: false, error: "Unable to read orders" }, { status: 500 });
   }
@@ -47,9 +53,10 @@ export async function PATCH(request: Request) {
   }
 
   try {
-    const orders = await updateOrderStatusInCsv(payload.id, payload.status as OrderStatus);
+    await updateOrderStatusInCsv(payload.id, payload.status as OrderStatus);
     const googleSheet = await updateGoogleSheetStatus(payload.id, payload.status as OrderStatus);
-    return Response.json({ ok: true, orders, googleSheetUpdated: googleSheet.sent });
+    const { orders, source } = await getOrders();
+    return Response.json({ ok: true, orders, source, googleSheetUpdated: googleSheet.sent });
   } catch {
     return Response.json({ ok: false, error: "Unable to update order" }, { status: 500 });
   }

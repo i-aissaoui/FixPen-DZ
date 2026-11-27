@@ -177,7 +177,7 @@ export default function OrderForm({
                 <DeliveryCard
                   active={draft.deliveryType === "stopDesk"}
                   badge={t(lang, "mostPopular")}
-                  fee={!draft.wilayaId ? 0 : totals.hasFreeStopDesk ? 0 : tariff.stopDesk}
+                  fee={!draft.wilayaId ? null : totals.hasFreeStopDesk ? 0 : tariff.stopDesk}
                   icon={<Building2 className="size-5" />}
                   lang={lang}
                   note={t(lang, "stopDeskNote")}
@@ -186,7 +186,7 @@ export default function OrderForm({
                 />
                 <DeliveryCard
                   active={draft.deliveryType === "home"}
-                  fee={!draft.wilayaId ? 0 : tariff.home}
+                  fee={!draft.wilayaId ? null : tariff.home}
                   icon={<Home className="size-5" />}
                   lang={lang}
                   note={t(lang, "homeNote")}
@@ -328,8 +328,14 @@ export default function OrderForm({
               <SummaryRow label={t(lang, "productSubtotal")} value={formatDA(totals.productSubtotal, lang)} />
               <SummaryRow
                 label={t(lang, "deliveryFee")}
-                value={totals.deliveryFee === 0 ? t(lang, "free") : formatDA(totals.deliveryFee, lang)}
-                accent={totals.deliveryFee === 0}
+                value={
+                  !draft.wilayaId
+                    ? t(lang, "wilayaPlaceholder")
+                    : totals.deliveryFee === 0
+                      ? t(lang, "free")
+                      : formatDA(totals.deliveryFee, lang)
+                }
+                accent={Boolean(draft.wilayaId) && totals.deliveryFee === 0}
               />
               {totals.savedVsSingle > 0 && (
                 <SummaryRow
@@ -341,9 +347,13 @@ export default function OrderForm({
             </div>
             <div className="mt-5 border-t border-dashed border-slate-200 pt-5">
               <p className="text-xs font-bold text-slate-500">{t(lang, "grandTotal")}</p>
-              <p dir="ltr" className="num mt-1 text-left text-3xl font-black text-emerald-700">
-                {formatDA(totals.grandTotal, lang)}
-              </p>
+              {draft.wilayaId ? (
+                <p dir="ltr" className="num mt-1 text-left text-3xl font-black text-emerald-700">
+                  {formatDA(totals.grandTotal, lang)}
+                </p>
+              ) : (
+                <p className="mt-2 text-xs font-bold leading-5 text-amber-700">{t(lang, "totalAfterWilaya")}</p>
+              )}
             </div>
             <div className="mt-5 space-y-2 rounded-2xl bg-cloud p-3 text-xs font-semibold text-slate-600">
               <p className="flex items-center gap-2"><Check className="size-3.5 text-emerald-600" /> {t(lang, "trustFour")}</p>
@@ -392,7 +402,7 @@ function DeliveryCard({
 }: {
   active: boolean;
   badge?: string;
-  fee: number;
+  fee: number | null;
   icon: React.ReactNode;
   lang: Lang;
   note: string;
@@ -424,7 +434,7 @@ function DeliveryCard({
         </div>
       </div>
       <p dir="ltr" className="num mt-3 text-left text-sm font-black text-emerald-700">
-        {fee === 0 ? t(lang, "free") : formatDA(fee, lang)}
+        {fee === null ? t(lang, "wilayaPlaceholder") : fee === 0 ? t(lang, "free") : formatDA(fee, lang)}
       </p>
     </button>
   );

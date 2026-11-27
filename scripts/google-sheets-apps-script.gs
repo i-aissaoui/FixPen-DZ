@@ -1,5 +1,8 @@
 const SPREADSHEET_ID = "1OZ15006oedhbUAeBhW2pYvg9wHO7UVmz-Gv4CjERXe4";
 
+const SETTINGS_SHEET = "settings";
+const STOCK_SHEET = "stock";
+
 const HEADERS = [
   "order_id",
   "created_at",
@@ -31,6 +34,36 @@ function sheet() {
 
 function json(value) {
   return ContentService.createTextOutput(JSON.stringify(value)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function namedSheet(name) {
+  const book = SPREADSHEET_ID.trim()
+    ? SpreadsheetApp.openById(SPREADSHEET_ID.trim())
+    : SpreadsheetApp.getActiveSpreadsheet();
+  let tab = book.getSheetByName(name);
+  if (!tab) tab = book.insertSheet(name);
+  return tab;
+}
+
+function writeJsonSheet(name, key, value) {
+  namedSheet(name).getRange(1, 1, 2, 2).setValues([
+    ["key", "value"],
+    [key, JSON.stringify(value)],
+  ]);
+}
+
+function readJsonSheet(name) {
+  const values = namedSheet(name).getRange(1, 1, 2, 2).getValues();
+  if (String(values[1][0]).trim() !== name) return null;
+  try {
+    return JSON.parse(String(values[1][1]));
+  } catch (error) {
+    return null;
+  }
+}
+
+function csvCell(value) {
+  return `"${String(value == null ? "" : value).replace(/"/g, '""')}"`;
 }
 
 function setupHeaders() {
@@ -68,7 +101,23 @@ function orderRow(order) {
   ];
 }
 
-function doGet() {
+function doGet(event) {
+  const action = event && event.parameter ? event.parameter.action : "";
+
+  if (action === "read") {
+    const rows = sheet().getDataRange().getValues();
+    const csv = rows.map((row) => row.map(csvCell).join(",")).join("\r\n");
+    return ContentService.createTextOutput(csv).setMimeType(ContentService.MimeType.TEXT);
+  }
+
+  if (action === "read_settings") {
+    return json({ ok: true, supported: true, settings: readJsonSheet(SETTINGS_SHEET) });
+  }
+
+  if (action === "read_stock") {
+    return json({ ok: true, supported: true, stock: readJsonSheet(STOCK_SHEET) });
+  }
+
   return json({
     ok: true,
     service: "FixPen DZ Google Sheets",
@@ -79,6 +128,16 @@ function doGet() {
 function doPost(event) {
   try {
     const payload = JSON.parse(event.postData.contents);
+
+    if (payload.action === "save_settings") {
+      writeJsonSheet(SETTINGS_SHEET, "settings", payload.settings);
+      return json({ ok: true, saved: true });
+    }
+
+    if (payload.action === "save_stock") {
+      writeJsonSheet(STOCK_SHEET, "stock", payload.stock);
+      return json({ ok: true, saved: true });
+    }
 
     if (payload.action === "update_status") {
       const rows = sheet().getDataRange().getValues();
@@ -91,6 +150,7 @@ function doPost(event) {
       return json({ ok: true, updated: false });
     }
 
+    if (!sheet().getRange(1, 1).getValue()) setupHeaders();
     sheet().appendRow(orderRow(payload));
     return json({ ok: true, saved: true });
   } catch (error) {

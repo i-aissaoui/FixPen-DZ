@@ -25,14 +25,7 @@ import { WILAYAS } from "@/lib/algeria";
 import { SHADES } from "@/lib/colors";
 import { downloadCsv } from "@/lib/csv";
 import { DEFAULT_SETTINGS, formatDA } from "@/lib/pricing";
-import {
-  loadOrders,
-  loadSettings,
-  loadStock,
-  replaceOrders,
-  saveSettings,
-  saveStock,
-} from "@/lib/storage";
+import { mergeSettings } from "@/lib/settings";
 import type { Order, OrderStatus, StockMap, StoreSettings } from "@/lib/types";
 
 type Tab = "orders" | "inventory" | "pricing";
@@ -44,6 +37,10 @@ const STATUS_LABELS: Record<OrderStatus, string> = {
   delivered: "تم التوصيل",
   cancelled: "ملغاة",
 };
+
+function sortOrders(orders: Order[]) {
+  return [...orders].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
 
 export default function AdminDashboard() {
   const [checking, setChecking] = useState(true);
@@ -64,24 +61,32 @@ export default function AdminDashboard() {
 
   async function loadData() {
     setTodayKey(new Date().toISOString().slice(0, 10));
-    setStock(loadStock());
-    setSettings(loadSettings());
 
-    let serverOrders: Order[] = [];
+    const settingsResponse = await fetch("/api/settings", { cache: "no-store" }).catch(() => null);
+    if (settingsResponse?.ok) {
+      const data = (await settingsResponse.json().catch(() => null)) as { settings?: Partial<StoreSettings> } | null;
+      if (data?.settings) setSettings(mergeSettings(data.settings));
+    }
+
+    const stockResponse = await fetch("/api/stock", { cache: "no-store" }).catch(() => null);
+    if (stockResponse?.ok) {
+      const data = (await stockResponse.json().catch(() => null)) as { stock?: StockMap } | null;
+      if (data?.stock) setStock(data.stock);
+    }
+
     try {
       const response = await fetch("/api/admin/orders", { cache: "no-store" });
       if (response.ok) {
         const data = (await response.json()) as { orders?: Order[] };
-        serverOrders = data.orders ?? [];
+        setOrders(sortOrders(data.orders ?? []));
+        return;
       }
     } catch {
-      serverOrders = [];
+      setOrders([]);
+      return;
     }
 
-    const byId = new Map<string, Order>();
-    for (const order of loadOrders()) byId.set(order.id, order);
-    for (const order of serverOrders) byId.set(order.id, order);
-    setOrders([...byId.values()].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
+    setOrders([]);
   }
 
   useEffect(() => {
@@ -156,27 +161,38 @@ export default function AdminDashboard() {
   }, [orders, todayKey]);
 
   async function updateStatus(id: string, status: OrderStatus) {
-    const next = orders.map((order) => (order.id === id ? { ...order, status } : order));
-    setOrders(next);
-    replaceOrders(next);
+    setOrders((current) =>
+      sortOrders(current.map((order) => (order.id === id ? { ...order, status } : order))),
+    );
 
     try {
-      await fetch("/api/admin/orders", {
+      const response = await fetch("/api/admin/orders", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, status }),
       });
+      if (!response.ok) return;
+      const data = (await response.json()) as { orders?: Order[] };
+      if (data.orders) setOrders(sortOrders(data.orders));
     } catch {
       return;
     }
   }
 
-  function toggleStock(id: string) {
+  async function toggleStock(id: string) {
     const shade = SHADES.find((item) => item.id === id);
     if (!shade) return;
     const next = { ...stock, [id]: !(stock[id] ?? shade.inStock) };
     setStock(next);
-    saveStock(next);
+    try {
+      await fetch("/api/stock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ stock: next }),
+      });
+    } catch {
+      return;
+    }
   }
 
   function updatePrice(key: keyof StoreSettings["prices"], value: number) {
@@ -199,16 +215,35 @@ export default function AdminDashboard() {
     }));
   }
 
-  function handleSaveSettings() {
-    saveSettings(settings);
-    setSaved(true);
-    window.setTimeout(() => setSaved(false), 2200);
+  async function handleSaveSettings() {
+    try {
+      const response = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ settings }),
+      });
+      if (!response.ok) return;
+      const data = (await response.json()) as { settings?: StoreSettings };
+      if (data.settings) setSettings(mergeSettings(data.settings));
+      setSaved(true);
+      window.setTimeout(() => setSaved(false), 2200);
+    } catch {
+      return;
+    }
   }
 
-  function handleResetSettings() {
+  async function handleResetSettings() {
     if (!window.confirm("إرجاع الأسعار والتعريفات للقيم الافتراضية؟")) return;
     setSettings(DEFAULT_SETTINGS);
-    saveSettings(DEFAULT_SETTINGS);
+    try {
+      await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ settings: DEFAULT_SETTINGS }),
+      });
+    } catch {
+      return;
+    }
   }
 
   if (checking) {
@@ -400,11 +435,20 @@ export default function AdminDashboard() {
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex flex-wrap gap-1">
-                            {order.shadeCodes.map((code, index) => (
-                              <span className="num rounded-md bg-slate-100 px-1.5 py-1 text-[10px] font-bold text-slate-700" key={`${code}-${index}`}>
-                                {code}
-                              </span>
-                            ))}
+                            {order.shadeCodes.map((code, index) => {
+                              const shade = SHADES.find((item) => item.code === code || item.id === code.replace("#", ""));
+                              const quantity = order.shadeQuantities?.find((item) => item.code === code)?.quantity;
+                              return (
+                                <span className="flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-1 text-[10px] font-bold text-slate-700" key={`${code}-${index}`}>
+                                  <span
+                                    className="size-3 rounded-full border border-slate-300"
+                                    style={{ backgroundColor: shade?.hex ?? "#FFFFFF" }}
+                                  />
+                                  <span dir="ltr" className="num">{code}</span>
+                                  {quantity ? <span dir="ltr" className="num text-slate-500">×{quantity}</span> : null}
+                                </span>
+                              );
+                            })}
                           </div>
                           {order.needHelp && (
                             <p className="mt-1 rounded-md bg-amber-50 px-1.5 py-1 text-[10px] font-bold text-amber-700">يحتاج مساعدة في اللون</p>

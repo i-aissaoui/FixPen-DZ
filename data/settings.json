@@ -1,0 +1,287 @@
+{
+  "prices": {
+    "one": 2200,
+    "two": 4200,
+    "three": 6000,
+    "four": 7700,
+    "five": 9300
+  },
+  "tariffs": {
+    "10": {
+      "stopDesk": 400,
+      "home": 650
+    },
+    "11": {
+      "stopDesk": 800,
+      "home": 1400
+    },
+    "12": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "13": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "14": {
+      "stopDesk": 400,
+      "home": 700
+    },
+    "15": {
+      "stopDesk": 350,
+      "home": 630
+    },
+    "16": {
+      "stopDesk": 200,
+      "home": 380
+    },
+    "17": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "18": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "19": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "20": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "21": {
+      "stopDesk": 390,
+      "home": 700
+    },
+    "22": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "23": {
+      "stopDesk": 390,
+      "home": 700
+    },
+    "24": {
+      "stopDesk": 390,
+      "home": 700
+    },
+    "25": {
+      "stopDesk": 390,
+      "home": 700
+    },
+    "26": {
+      "stopDesk": 390,
+      "home": 600
+    },
+    "27": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "28": {
+      "stopDesk": 400,
+      "home": 650
+    },
+    "29": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "30": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "31": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "32": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "33": {
+      "stopDesk": 790,
+      "home": 1300
+    },
+    "34": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "35": {
+      "stopDesk": 350,
+      "home": 590
+    },
+    "36": {
+      "stopDesk": 390,
+      "home": 700
+    },
+    "37": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "38": {
+      "stopDesk": 400,
+      "home": 700
+    },
+    "39": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "40": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "41": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "42": {
+      "stopDesk": 250,
+      "home": 500
+    },
+    "43": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "44": {
+      "stopDesk": 400,
+      "home": 650
+    },
+    "45": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "46": {
+      "stopDesk": 390,
+      "home": 690
+    },
+    "47": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "48": {
+      "stopDesk": 400,
+      "home": 700
+    },
+    "49": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "50": {
+      "stopDesk": 800,
+      "home": 1400
+    },
+    "51": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "52": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "53": {
+      "stopDesk": 790,
+      "home": 1300
+    },
+    "54": {
+      "stopDesk": 800,
+      "home": 1400
+    },
+    "55": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "56": {
+      "stopDesk": 790,
+      "home": 1300
+    },
+    "57": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "58": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "59": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "60": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "61": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "62": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "63": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "64": {
+      "stopDesk": 400,
+      "home": 700
+    },
+    "65": {
+      "stopDesk": 400,
+      "home": 700
+    },
+    "66": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "67": {
+      "stopDesk": 390,
+      "home": 600
+    },
+    "68": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "69": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "01": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "02": {
+      "stopDesk": 400,
+      "home": 700
+    },
+    "03": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "04": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "05": {
+      "stopDesk": 400,
+      "home": 790
+    },
+    "06": {
+      "stopDesk": 400,
+      "home": 690
+    },
+    "07": {
+      "stopDesk": 500,
+      "home": 900
+    },
+    "08": {
+      "stopDesk": 600,
+      "home": 1100
+    },
+    "09": {
+      "stopDesk": 250,
+      "home": 500
+    }
+  }
+}

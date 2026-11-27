@@ -22,7 +22,7 @@ import {
   getSelectionCount,
   type Selection,
 } from "@/lib/selection";
-import { loadLang, loadSettings, loadStock, saveLang, saveOrder } from "@/lib/storage";
+import { mergeSettings } from "@/lib/settings";
 import { createOrderId, type Order, type OrderDraft, type StockMap, type StoreSettings } from "@/lib/types";
 
 const INITIAL_DRAFT: OrderDraft = {
@@ -37,7 +37,6 @@ const INITIAL_DRAFT: OrderDraft = {
 
 export default function Storefront() {
   const [lang, setLang] = useState<Lang>("ar");
-  const [hydrated, setHydrated] = useState(false);
   const [selection, setSelection] = useState<Selection>({});
   const [previewId, setPreviewId] = useState("01");
   const [stock, setStock] = useState<StockMap>({});
@@ -49,21 +48,25 @@ export default function Storefront() {
   const checkoutTracked = useRef(false);
 
   useEffect(() => {
-    queueMicrotask(() => {
-      setLang(loadLang());
-      setStock(loadStock());
-      setSettings(loadSettings());
-      setHydrated(true);
-    });
     pixelEvents.pageView();
+    void fetch("/api/settings", { cache: "no-store" })
+      .then((response) => response.json())
+      .then((data: { settings?: Partial<StoreSettings> }) => {
+        if (data.settings) setSettings(mergeSettings(data.settings));
+      })
+      .catch(() => undefined);
+    void fetch("/api/stock", { cache: "no-store" })
+      .then((response) => response.json())
+      .then((data: { stock?: StockMap }) => {
+        if (data.stock) setStock(data.stock);
+      })
+      .catch(() => undefined);
   }, []);
 
   useEffect(() => {
-    if (!hydrated) return;
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-    saveLang(lang);
-  }, [hydrated, lang]);
+  }, [lang]);
 
   const selectedLines = useMemo(
     () =>
@@ -180,7 +183,6 @@ export default function Storefront() {
     };
 
     setSubmitting(true);
-    saveOrder(order);
     pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal);
 
     let csvSaved = false;

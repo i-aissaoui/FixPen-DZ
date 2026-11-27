@@ -4,11 +4,11 @@ import type { PriceSettings, StoreSettings } from "./types";
 export const MAX_PENS = 5;
 
 export const DEFAULT_PRICES: PriceSettings = {
-  one: 1900,
-  two: 3700,
-  three: 5450,
-  four: 7100,
-  five: 8650,
+  one: 2200,
+  two: 4200,
+  three: 6000,
+  four: 7700,
+  five: 9300,
 };
 
 export const DEFAULT_SETTINGS: StoreSettings = {
