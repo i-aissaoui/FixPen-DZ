@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Cairo, Inter } from "next/font/google";
+import { MetaPixel } from "@/components/meta-pixel";
 import "./globals.css";
+
+const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1456060756089112";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -37,7 +40,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-white text-slate-900">{children}</body>
+      <body className="min-h-full bg-white text-slate-900">
+        <MetaPixel pixelId={pixelId} />
+        {children}
+      </body>
     </html>
   );
 }

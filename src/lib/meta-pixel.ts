@@ -15,62 +15,49 @@ type PixelParamValue =
 
 type PixelParams = Record<string, PixelParamValue>;
 
+type Fbq = ((...args: unknown[]) => void) & {
+  queue?: unknown[][];
+  callMethod?: (...args: unknown[]) => void;
+  loaded?: boolean;
+  version?: string;
+};
+
 declare global {
   interface Window {
-    fbq?: (...args: unknown[]) => void;
+    fbq?: Fbq;
     _fbq?: unknown;
+    __fixpenPixelQueue?: unknown[][];
   }
 }
 
-const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "1456060756089112";
-let initialized = false;
-
-export function initPixel() {
-  if (!PIXEL_ID || typeof window === "undefined" || initialized) return;
-  initialized = true;
-
-  const w = window;
-  if (!w.fbq) {
-    type Fbq = ((...args: unknown[]) => void) & {
-      queue?: unknown[][];
-      callMethod?: (...args: unknown[]) => void;
-      loaded?: boolean;
-      version?: string;
-    };
-    const fbq = function (...args: unknown[]) {
-      const queue = fbq as Fbq;
-      if (queue.callMethod) queue.callMethod(...args);
-      else queue.queue?.push(args);
-    } as Fbq;
-    fbq.queue = [];
-    fbq.loaded = true;
-    fbq.version = "2.0";
-    w.fbq = fbq;
-    w._fbq = fbq;
-  }
-
-  w.fbq?.("init", PIXEL_ID);
-
-  if (!document.getElementById("meta-pixel-script")) {
-    const script = document.createElement("script");
-    script.id = "meta-pixel-script";
-    script.async = true;
-    script.src = "https://connect.facebook.net/en_US/fbevents.js";
-    document.head.appendChild(script);
-  }
+function queuedEvents() {
+  if (typeof window === "undefined") return [];
+  if (!window.__fixpenPixelQueue) window.__fixpenPixelQueue = [];
+  return window.__fixpenPixelQueue;
 }
 
-export function trackPixel(event: PixelEventName, params: PixelParams = {}) {
-  if (!PIXEL_ID || typeof window === "undefined") return;
-  initPixel();
-  window.fbq?.("track", event, params);
+function track(event: PixelEventName, params: PixelParams = {}, eventId?: string) {
+  if (typeof window === "undefined") return;
+
+  const args: unknown[] = eventId
+    ? ["track", event, params, { eventID: eventId }]
+    : ["track", event, params];
+
+  if (typeof window.fbq === "function") window.fbq(...args);
+  else queuedEvents().push(args);
+}
+
+export function flushPixelQueue() {
+  if (typeof window === "undefined" || typeof window.fbq !== "function") return;
+  const pending = window.__fixpenPixelQueue ?? [];
+  window.__fixpenPixelQueue = [];
+  for (const args of pending) window.fbq(...args);
 }
 
 export const pixelEvents = {
-  pageView: () => trackPixel("PageView"),
   viewContent: (shadeCodes: string[]) =>
-    trackPixel("ViewContent", {
-      content_name: "FixPen DZ Paint & Scratch Repair Pen",
+    track("ViewContent", {
+      content_name: "Fix Pen",
       content_type: "product",
       content_ids: shadeCodes,
       contents: shadeCodes.map((id) => ({ id, quantity: 1 })),
@@ -78,8 +65,8 @@ export const pixelEvents = {
       currency: "DZD",
     }),
   addToCart: (shadeCodes: string[], value: number) =>
-    trackPixel("AddToCart", {
-      content_name: "FixPen DZ Paint & Scratch Repair Pen",
+    track("AddToCart", {
+      content_name: "Fix Pen",
       content_type: "product",
       content_ids: shadeCodes,
       contents: shadeCodes.map((id) => ({ id, quantity: 1 })),
@@ -87,39 +74,38 @@ export const pixelEvents = {
       currency: "DZD",
     }),
   initiateCheckout: (shadeCodes: string[], value: number) =>
-    trackPixel("InitiateCheckout", {
-      content_name: "FixPen DZ COD Order",
+    track("InitiateCheckout", {
+      content_name: "Fix Pen",
       content_type: "product",
       content_ids: shadeCodes,
       value,
       currency: "DZD",
     }),
-  purchase: (orderId: string, shadeCodes: string[], value: number, eventId?: string) => {
-    if (!eventId) {
-      trackPixel("Purchase", {
-        content_name: "FixPen DZ COD Order",
-        content_type: "product",
-        content_ids: shadeCodes,
-        value,
-        currency: "DZD",
-        order_id: orderId,
-      });
-      return;
-    }
-
-    initPixel();
-    window.fbq?.(
-      "track",
+  purchase: ({
+    orderId,
+    shadeCodes,
+    value,
+    quantity,
+    eventId,
+  }: {
+    orderId: string;
+    shadeCodes: string[];
+    value: number;
+    quantity: number;
+    eventId?: string;
+  }) =>
+    track(
       "Purchase",
       {
-        content_name: "FixPen DZ COD Order",
+        content_name: "Fix Pen",
         content_type: "product",
         content_ids: shadeCodes,
+        contents: shadeCodes.map((id) => ({ id, quantity: Math.max(1, Math.floor(quantity / shadeCodes.length || 1)) })),
+        num_items: quantity,
         value,
         currency: "DZD",
         order_id: orderId,
       },
-      { eventID: eventId },
-    );
-  },
+      eventId,
+    ),
 };

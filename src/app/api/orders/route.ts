@@ -39,6 +39,8 @@ export async function GET() {
     ok: true,
     service: "fixpendz-orders",
     webhookConfigured: Boolean(process.env.ORDERS_WEBHOOK_URL),
+    metaPixelConfigured: Boolean(process.env.NEXT_PUBLIC_META_PIXEL_ID || "1456060756089112"),
+    metaCapiConfigured: isMetaCapiConfigured(),
   });
 }
 

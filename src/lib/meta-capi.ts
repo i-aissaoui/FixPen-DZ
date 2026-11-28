@@ -1,9 +1,10 @@
 import { createHash } from "node:crypto";
 import type { Order } from "./types";
 
-const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "1456060756089112";
-const ACCESS_TOKEN = process.env.META_ACCESS_TOKEN ?? "";
-const GRAPH_VERSION = process.env.META_GRAPH_VERSION ?? "v23.0";
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1456060756089112";
+const ACCESS_TOKEN =
+  process.env.META_CAPI_ACCESS_TOKEN || process.env.META_ACCESS_TOKEN || "";
+const GRAPH_VERSION = process.env.META_GRAPH_VERSION || "v23.0";
 
 function sha256(value: string) {
   return createHash("sha256").update(value).digest("hex");
@@ -63,8 +64,14 @@ export async function sendServerPurchase({
               custom_data: {
                 currency: "DZD",
                 value: order.grandTotal,
+                content_name: "Fix Pen",
                 content_type: "product",
                 content_ids: order.shadeCodes,
+                contents: order.shadeCodes.map((id) => ({
+                  id,
+                  quantity: Math.max(1, Math.floor(order.penCount / order.shadeCodes.length || 1)),
+                })),
+                num_items: order.penCount,
                 order_id: order.id,
               },
             },

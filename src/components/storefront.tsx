@@ -48,7 +48,6 @@ export default function Storefront() {
   const checkoutTracked = useRef(false);
 
   useEffect(() => {
-    pixelEvents.pageView();
     void fetch("/api/settings", { cache: "no-store" })
       .then((response) => response.json())
       .then((data: { settings?: Partial<StoreSettings> }) => {
@@ -204,7 +203,15 @@ export default function Storefront() {
       csvSaved = false;
     }
 
-    if (orderAccepted) pixelEvents.purchase(order.id, order.shadeCodes, order.grandTotal, pixelEventId);
+    if (orderAccepted) {
+      pixelEvents.purchase({
+        orderId: order.id,
+        shadeCodes: order.shadeCodes,
+        value: order.grandTotal,
+        quantity: penCount,
+        eventId: pixelEventId,
+      });
+    }
 
     setConfirmation(order);
     setError(csvSaved ? "" : t(lang, "csvSaveWarning"));
