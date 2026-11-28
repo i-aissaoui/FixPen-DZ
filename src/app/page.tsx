@@ -1,5 +1,5 @@
-import Storefront from "@/components/storefront";
+import SimpleStorefront from "@/components/simple-storefront";
 
 export default function Home() {
-  return <Storefront />;
+  return <SimpleStorefront />;
 }
